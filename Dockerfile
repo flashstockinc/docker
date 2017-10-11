@@ -1,7 +1,9 @@
-FROM docker:17.09.0-git
+FROM docker:17.09
 
 RUN apk add --no-cache \
             bash \
+            git \
+            openssh-client \
             python
 
 RUN set -ex; \
