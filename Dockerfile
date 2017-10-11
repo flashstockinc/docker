@@ -3,13 +3,14 @@ FROM docker:17.09
 RUN apk add --no-cache \
             bash \
             git \
+            jq \
             openssh-client \
-            python
+            python \
+            zip
 
 RUN set -ex; \
     apk add --no-cache --virtual .fetch-deps \
         curl \
-        zip \
     ; \
     \
     if ! curl -o awscli-bundle.zip "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip"; then \
