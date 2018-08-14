@@ -2,6 +2,7 @@ FROM docker:17.09
 
 RUN apk add --no-cache \
             bash \
+            curl \
             git \
             jq \
             openssh-client \
@@ -9,9 +10,6 @@ RUN apk add --no-cache \
             zip
 
 RUN set -ex; \
-    apk add --no-cache --virtual .fetch-deps \
-        curl \
-    ; \
     \
     if ! curl -o awscli-bundle.zip "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip"; then \
         echo >&2 "error: failed to download 'awscli' from S3"; \
@@ -23,8 +21,6 @@ RUN set -ex; \
     ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws; \
     \
     rm awscli-bundle.zip; \
-    \
-    apk del .fetch-deps; \
     \
     aws --version
 
