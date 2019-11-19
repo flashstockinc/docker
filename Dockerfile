@@ -1,4 +1,6 @@
-FROM docker:18.06.0-ce
+# See CircleCI docs for supported docker versions
+# https://circleci.com/docs/2.0/building-docker-images/#docker-version
+FROM docker:18.09.3
 
 RUN apk add --no-cache \
             bash \
